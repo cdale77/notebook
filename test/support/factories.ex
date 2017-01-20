@@ -14,4 +14,16 @@ defmodule Notebook.Factory do
       name: "Test Book"
     }
   end
+
+  def user_factory do
+    %Notebook.User{
+      email: sequence(:email, &"email-#{&1}@example.com"),
+    }
+  end
+
+  def set_password(user, password) do
+    user
+    |> Notebook.User.changeset(%{"password" => password})
+    |> Ecto.Changeset.apply_changes()
+  end
 end

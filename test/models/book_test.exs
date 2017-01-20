@@ -5,21 +5,25 @@ defmodule Notebook.BookTest do
 
   @valid_attrs %{name: "test"}
 
-  test "changset with valid attributes" do
-    changeset = Book.changeset(%Book{}, @valid_attrs)
-    assert changeset.valid?
+  describe "relationships" do
+    test "notes relationship" do
+      book = insert(:book)
+      insert(:note, book: book)
+      insert(:note, book: book)
+      insert(:note)
+
+      book = Book
+      |> Repo.get(book.id)
+      |> Repo.preload(:notes)
+
+      assert Enum.count(book.notes) == 2
+    end
   end
 
-  test "notes relationship" do
-    book = insert(:book)
-    insert(:note, book: book)
-    insert(:note, book: book)
-    insert(:note)
-
-    book = Book
-    |> Repo.get(book.id)
-    |> Repo.preload(:notes)
-
-    assert Enum.count(book.notes) == 2
+  describe "changeset" do
+    test "changset with valid attributes" do
+      changeset = Book.changeset(%Book{}, @valid_attrs)
+      assert changeset.valid?
+    end
   end
 end
