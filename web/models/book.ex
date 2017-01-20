@@ -1,17 +1,16 @@
-defmodule Notebook.Note do
+defmodule Notebook.Book do
   use Notebook.Web, :model
 
-  schema "notes" do
-    field :name,      :string, default: ""
-    field :note_html, :string, default: ""
-    belongs_to :book, Notebook.Book
+  schema "books" do
+    field :name, :string, default: ""
+    has_many :notes, Notebook.Note
     timestamps()
   end
 
   @required_fields ~w()
 
   @doc """
-    Note changeset. No fields required.
+    Book changeset. No fields required.
   """
   def changeset(model, params \\ :empty) do
     model
