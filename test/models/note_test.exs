@@ -5,6 +5,7 @@ defmodule Notbook.NoteTest do
 
   @valid_attrs %{name: "", note_text: ""}
 
+  @tag :skip
   describe "relationships" do
     test "book relationship" do
       book = insert(:book)

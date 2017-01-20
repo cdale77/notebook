@@ -5,13 +5,14 @@ defmodule Notebook.Factory do
     %Notebook.Note{
       name: "Test Note",
       note_html: "<h2>Test</h2>",
-      book: build(:book)
+      book: build(:book) |> set_password("password1234")
     }
   end
 
   def book_factory do
     %Notebook.Book{
-      name: "Test Book"
+      name: "Test Book",
+      user: build(:user) |> set_password("password1234")
     }
   end
 

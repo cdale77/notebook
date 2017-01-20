@@ -4,6 +4,7 @@ defmodule Notebook.Book do
   schema "books" do
     field :name, :string, default: ""
     has_many :notes, Notebook.Note
+    belongs_to :user, Notebook.User
     timestamps()
   end
 

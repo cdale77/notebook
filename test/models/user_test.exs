@@ -7,7 +7,6 @@ defmodule Notebook.UserTest do
                   password: "password1234",
                   password_confirmation: "password1234"}
 
-  @tag :skip
   describe "relationships" do
     test "books relationship" do
       user = build(:user) |> set_password("password1234") |> insert()
@@ -23,13 +22,14 @@ defmodule Notebook.UserTest do
     end
   end
 
-  @tag :skip
   describe "emails" do
     test "unique emails" do
-      user = build(:user) |> set_password("password") |> insert()
+      user = build(:user) |> set_password("password1234") |> insert()
+
       user_attrs = %{email: user.email,
                      passord: "password1234",
                      password_confirmation: "password1234"}
+
       changeset = User.changeset(%User{}, user_attrs)
       refute changeset.valid?
     end
@@ -37,7 +37,7 @@ defmodule Notebook.UserTest do
 
   describe "passwords" do
     test "setting the encrypted_password attribute" do
-      user = %User{}
+      {:ok, user} = %User{}
       |> User.changeset(@valid_attrs)
       |> Repo.insert
 
