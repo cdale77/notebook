@@ -14,13 +14,16 @@ defmodule Notebook.Router do
   end
 
   scope "/", Notebook do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Notebook do
-  #   pipe_through :api
-  # end
+   scope "/api", Notebook do
+     pipe_through :api
+     scope "/v1" do
+       post "/sessions",   Api.V1.SessionController, :create
+       delete "/sessions", Api.V1.SessionController, :delete
+     end
+   end
 end
