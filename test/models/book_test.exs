@@ -16,7 +16,6 @@ defmodule Notebook.BookTest do
       assert book.user_id == user.id
     end
 
-    @tag :skip
     test "notes relationship" do
       book = insert(:book)
       insert(:note, book: book)

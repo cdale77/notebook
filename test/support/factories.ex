@@ -5,7 +5,7 @@ defmodule Notebook.Factory do
     %Notebook.Note{
       name: "Test Note",
       note_html: "<h2>Test</h2>",
-      book: build(:book) |> set_password("password1234")
+      book: build(:book)
     }
   end
 

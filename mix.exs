@@ -19,7 +19,7 @@ defmodule Notebook.Mixfile do
   def application do
     [mod: {Notebook, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :ex_machina, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule Notebook.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:ex_machina, "~> 1.0", only: :test },
-     {:comeonin, "~> 3.0"}]
+     {:comeonin, "~> 3.0"},
+     {:guardian, "~> 0.14"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
