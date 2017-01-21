@@ -7,9 +7,13 @@ defmodule Notebook.UserTest do
                   password: "password1234",
                   password_confirmation: "password1234"}
 
+  setup do
+    user = build(:user) |> set_password("password1234") |> insert()
+    {:ok, %{user: Repo.get(User, user.id)}}
+  end
+
   describe "relationships" do
-    test "books relationship" do
-      user = build(:user) |> set_password("password1234") |> insert()
+    test "books relationship", %{user: user} do
       insert(:book, user: user)
       insert(:book, user: user)
       insert(:book)
@@ -23,9 +27,7 @@ defmodule Notebook.UserTest do
   end
 
   describe "emails" do
-    test "unique emails" do
-      user = build(:user) |> set_password("password1234") |> insert()
-
+    test "unique emails", %{user: user} do
       user_attrs = %{email: user.email,
                      passord: "password1234",
                      password_confirmation: "password1234"}
@@ -83,6 +85,26 @@ defmodule Notebook.UserTest do
                         password_confirmation: "wrong"}
       changeset = User.changeset(%User{}, invalid_attrs)
       refute changeset.valid?
+    end
+  end
+
+  describe "find_and_confirm_password/2" do
+    test "with a correct email and password", %{user: user} do
+      response = User.find_and_confirm_password(user.email, "password1234")
+
+      assert {:ok, user} == response
+    end
+
+    test "with an incorrect email and correct password" do
+      response = User.find_and_confirm_password("foo", "password1234")
+
+      assert {:error} == response
+    end
+
+    test "with a correct email and incorrect password", %{user: user} do
+      response = User.find_and_confirm_password(user.email, "wrong")
+
+      assert {:error} == response
     end
   end
 end
