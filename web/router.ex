@@ -11,6 +11,8 @@ defmodule Notebook.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", Notebook do
@@ -23,7 +25,7 @@ defmodule Notebook.Router do
      pipe_through :api
      scope "/v1" do
        post "/sessions",   Api.V1.SessionController, :create
-       delete "/sessions", Api.V1.SessionController, :delete
+       delete "/sessions", Api.V1.SessionController, :destroy
      end
    end
 end

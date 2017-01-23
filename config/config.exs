@@ -27,7 +27,7 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :guardian, Guardian,
-  allowed_algos: ["HS512"], # optional
+  allowed_algos: ["ES512"], # optional
   verify_module: Guardian.JWT,  # optional
   issuer: "Notebook",
   ttl: { 30, :days },
