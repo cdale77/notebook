@@ -17,7 +17,7 @@ defmodule Notebook.Api.V1.SessionControllerTest do
       |> json_response(:created)
 
       assert String.trim(resp["jwt"]) != ""
-      assert resp["user"]["email"] == user.email
+      assert resp["user"] == %{ "email" => user.email, "id" => user.id}
     end
 
     test "when the email is incorrect", %{conn: conn} do
@@ -26,7 +26,7 @@ defmodule Notebook.Api.V1.SessionControllerTest do
       |> post(session_path(Endpoint, :create, session: params))
       |> json_response(:unprocessable_entity)
 
-      assert resp["message"] == "Invalid email or password"
+      assert resp == %{"message" => "Invalid email or password"}
     end
 
     test "when the password is incorrect", %{conn: conn, user: user} do
@@ -35,7 +35,7 @@ defmodule Notebook.Api.V1.SessionControllerTest do
       |> post(session_path(Endpoint, :create, session: params))
       |> json_response(:unprocessable_entity)
 
-      assert resp["message"] == "Invalid email or password"
+      assert resp == %{"message" => "Invalid email or password"}
     end
   end
 
@@ -48,7 +48,7 @@ defmodule Notebook.Api.V1.SessionControllerTest do
       |> delete(session_path(Endpoint, :destroy))
       |> json_response(:ok)
 
-      assert resp["message"] == "Logged out"
+      assert resp == %{"message" => "Logged out"}
     end
 
     test "without a jwt", %{conn: conn} do
@@ -56,7 +56,7 @@ defmodule Notebook.Api.V1.SessionControllerTest do
       |> delete(session_path(Endpoint, :destroy))
       |> json_response(:unprocessable_entity)
 
-      assert resp["message"] == "Something went wrong"
+      assert resp == %{"message" => "Something went wrong"}
     end
   end
 end
