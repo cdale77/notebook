@@ -8,14 +8,14 @@ defmodule Notebook.Note do
     timestamps()
   end
 
-  @required_fields []
-
   @doc """
-    Note changeset. No fields required.
+    Note changeset. Fields required:
+    * name: string
+    * note_html: text
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, [:name, :note_html])
+    |> validate_required(:name)
   end
 end

@@ -3,7 +3,8 @@ defmodule Notbook.NoteTest do
   import Notebook.Factory
   alias Notebook.Note
 
-  @valid_attrs %{name: "", note_text: ""}
+  @valid_attrs %{name: "Test", note_html: "<html></html>"}
+  @invalid_attrs %{name: "", note_html: "<html></html>"}
 
   describe "relationships" do
     test "book relationship" do
@@ -22,6 +23,11 @@ defmodule Notbook.NoteTest do
     test "changeset with valid attributes" do
       changeset = Note.changeset(%Note{}, @valid_attrs)
       assert changeset.valid?
+    end
+
+    test "changeset with invalid attributes" do
+      changeset = Note.changeset(%Note{}, @invalid_attrs)
+      refute changeset.valid?
     end
   end
 end

@@ -5,7 +5,7 @@ defmodule Notebook.Api.V1.SessionView do
     %{user: user, jwt: jwt}
   end
 
-  def render("destroy.json", %{message: message}) do
+  def render("delete.json", %{message: message}) do
     %{message: message}
   end
 

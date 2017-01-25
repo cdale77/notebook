@@ -21,11 +21,12 @@ defmodule Notebook.Router do
     get "/", PageController, :index
   end
 
-   scope "/api", Notebook do
-     pipe_through :api
-     scope "/v1" do
-       post "/sessions",   Api.V1.SessionController, :create
-       delete "/sessions", Api.V1.SessionController, :destroy
-     end
-   end
+  scope "/api", Notebook do
+    pipe_through :api
+    scope "/v1" do
+      post "/sessions",   Api.V1.SessionController, :create
+      delete "/sessions", Api.V1.SessionController, :delete
+      resources "/notes", Api.V1.NoteController
+    end
+  end
 end

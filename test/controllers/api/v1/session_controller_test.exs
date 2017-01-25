@@ -39,13 +39,13 @@ defmodule Notebook.Api.V1.SessionControllerTest do
     end
   end
 
-  describe "destroy" do
+  describe "delete" do
     test "with a valid jwt", %{conn: conn, user: user} do
       {:ok, jwt, _claims} = Guardian.encode_and_sign(user)
 
       resp = conn
       |> put_req_header("authorization", "Bearer #{jwt}")
-      |> delete(session_path(Endpoint, :destroy))
+      |> delete(session_path(Endpoint, :delete))
       |> json_response(:ok)
 
       assert resp == %{"message" => "Logged out"}
@@ -53,7 +53,7 @@ defmodule Notebook.Api.V1.SessionControllerTest do
 
     test "without a jwt", %{conn: conn} do
       resp = conn
-      |> delete(session_path(Endpoint, :destroy))
+      |> delete(session_path(Endpoint, :delete))
       |> json_response(:unprocessable_entity)
 
       assert resp == %{"message" => "Something went wrong"}
