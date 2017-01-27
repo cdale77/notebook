@@ -10,6 +10,51 @@ defmodule Notebook.Api.V1.NoteControllerTest do
     {:ok, conn: conn, jwt: jwt}
   end
 
+  describe "show" do
+    test "with an invalid jwt", %{conn: conn} do
+      note = insert(:note)
+      resp = conn
+      |> put_req_header("authorization", "Bearer: 12323343434")
+      |> get(note_path(Endpoint, :show, note))
+      |> json_response(:unauthorized)
+
+      assert resp["message"] == "Authentication required"
+    end
+
+    test "with a valid jwt", %{conn: conn, jwt: jwt} do
+      note = insert(:note)
+      resp = conn
+      |> put_req_header("authorization", "Bearer: #{jwt}")
+      |> get(note_path(Endpoint, :show, note))
+      |> json_response(:ok)
+
+      assert resp["data"]["note"]["name"] == "Test Note"
+      assert resp["data"]["note"]["note_html"] == "<h2>Test</h2>"
+    end
+  end
+
+  describe "index" do
+    test "with an invalid jwt", %{conn: conn} do
+      resp = conn
+      |> put_req_header("authorization", "Bearer: 12323343434")
+      |> get(note_path(Endpoint, :index))
+      |> json_response(:unauthorized)
+
+      assert resp["message"] == "Authentication required"
+    end
+
+    test "with a valid jwt", %{conn: conn, jwt: jwt} do
+      insert(:note)
+      insert(:note)
+      resp = conn
+      |> put_req_header("authorization", "Bearer: #{jwt}")
+      |> get(note_path(Endpoint, :index))
+      |> json_response(:ok)
+
+      assert length(resp["data"]["notes"]) == 2
+    end
+  end
+
   describe "create" do
     test "with an invalid jwt", %{conn: conn} do
       note_params = %{ name: "Test", note_html: "<html></html>" }

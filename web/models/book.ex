@@ -8,14 +8,12 @@ defmodule Notebook.Book do
     timestamps()
   end
 
-  @required_fields []
-
   @doc """
-    Book changeset. No fields required.
+    Book changeset. Name field required.
   """
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(params, [:name])
+    |> validate_required(:name)
   end
 end

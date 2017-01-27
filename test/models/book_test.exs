@@ -35,5 +35,10 @@ defmodule Notebook.BookTest do
       changeset = Book.changeset(%Book{}, @valid_attrs)
       assert changeset.valid?
     end
+
+    test "changeset without a name" do
+      changeset = Book.changeset(%Book{}, %{name: ""})
+      refute changeset.valid?
+    end
   end
 end

@@ -7,6 +7,20 @@ defmodule Notebook.Api.V1.NoteController do
 
   plug :scrub_params, "note" when action in [:create, :update]
 
+  def show(conn, %{"id" => id}) do
+    note = Repo.get(Note, id)
+    conn
+    |> put_status(:ok)
+    |> render("show.json", note: note)
+  end
+
+  def index(conn, %{}) do
+    notes = Repo.all(Note)
+    conn
+    |> put_status(:ok)
+    |> render("index.json", notes: notes)
+  end
+
   def create(conn, %{"note" => note_params}) do
     changeset = Note.changeset(%Note{}, note_params)
     case Repo.insert(changeset) do
@@ -19,7 +33,6 @@ defmodule Notebook.Api.V1.NoteController do
         conn
         |> put_status(:unprocessable_entity)
         |> render("error.json", message: changeset.errors)
-
     end
   end
 
