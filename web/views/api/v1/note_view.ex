@@ -24,6 +24,7 @@ defmodule Notebook.Api.V1.NoteView do
   def render("one.json", %{note: note}) do
     %{
       id: note.id,
+      book_id: note.book_id,
       name: note.name,
       note_html: note.note_html,
       created_at: note.inserted_at,

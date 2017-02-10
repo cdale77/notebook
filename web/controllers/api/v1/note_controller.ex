@@ -1,28 +1,34 @@
 defmodule Notebook.Api.V1.NoteController do
   use Notebook.Web, :controller
-  alias Notebook.{Repo, Note}
+  alias Notebook.{Repo, Note, Book}
 
   plug Guardian.Plug.EnsureAuthenticated,
        handler: Notebook.Api.V1.SessionController
 
   plug :scrub_params, "note" when action in [:create, :update]
 
-  def show(conn, %{"id" => id}) do
-    note = Repo.get(Note, id)
+  def show(conn, %{"id" => id, "book_id" => book_id}) do
+    note = Note |> Repo.get_by(id: id, book_id: book_id)
     conn
     |> put_status(:ok)
     |> render("show.json", note: note)
   end
 
-  def index(conn, %{}) do
-    notes = Repo.all(Note)
+  def index(conn, %{"book_id" => book_id}) do
+    notes = Note
+    |> where([n], n.book_id == ^book_id)
+    |> Repo.all
+
     conn
     |> put_status(:ok)
     |> render("index.json", notes: notes)
   end
 
-  def create(conn, %{"note" => note_params}) do
-    changeset = Note.changeset(%Note{}, note_params)
+  def create(conn, %{"note" => note_params, "book_id" => book_id}) do
+    changeset = Repo.get(Book, book_id)
+    |> build_assoc(:notes)
+    |> Note.changeset(note_params)
+
     case Repo.insert(changeset) do
       {:ok, note} ->
         conn
