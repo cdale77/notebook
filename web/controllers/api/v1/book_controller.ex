@@ -40,7 +40,7 @@ defmodule Notebook.Api.V1.BookController do
     existing_book = Repo.get(Book, id)
     changeset = Book.changeset(existing_book, book_params)
 
-    case Repo.insert(changeset) do
+    case Repo.update(changeset) do
       {:ok, book} ->
         conn
         |> put_status(:ok)
