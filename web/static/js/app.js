@@ -8,6 +8,9 @@ import createLogger                     from "redux-logger";
 import { Router, Route, hashHistory }   from "react-router";
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import Constants                        from "./constants";
+import Utils                            from "./utils";
+import AppContainer                     from "./containers/app_container";
+//import SignInContainer                  from "./containers/sign_in_container";
 
 function persistStore() {
   const stringifiedState = JSON.stringify(store.getState());
@@ -30,3 +33,12 @@ store.subscribe(persistStore);
 
 const history = syncHistoryWithStore(hashHistory, store);
 
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={AppContainer}>
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById("app-container")
+);
