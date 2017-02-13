@@ -9,8 +9,11 @@ import { Router, Route, hashHistory }   from "react-router";
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import Constants                        from "./constants";
 import Utils                            from "./utils";
+import requestReducer                   from "./reducers/request_reducer";
+import flashReducer                     from "./reducers/flash_reducer";
+import sessionReducer                   from "./reducers/session_reducer";
 import AppContainer                     from "./containers/app_container";
-//import SignInContainer                  from "./containers/sign_in_container";
+import SignInContainer                  from "./containers/sign_in_container";
 
 function persistStore() {
   const stringifiedState = JSON.stringify(store.getState());
@@ -23,6 +26,9 @@ const initialState = persistedState == null ? defaultState : persistedState;
 
 const appReducer = combineReducers(
   {
+    flash: flashReducer,
+    request: requestReducer,
+    session: sessionReducer,
     routing: routerReducer
   }
 );
@@ -37,6 +43,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={AppContainer}>
+        <Route path="/sign_in" component={SignInContainer} />
       </Route>
     </Router>
   </Provider>,

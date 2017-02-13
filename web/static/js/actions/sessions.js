@@ -72,7 +72,7 @@ const SessionActions = {
         dispatch(newSessionSuccess(json.user));
         dispatch(requestActions.requestEnd());
         dispatch(flashActions.flashSuccess("Successfuly signed in"));
-        hashHistory.push(Pages.sites());
+        //hashHistory.push(Pages.sites());
       })
       .catch((message) => {
         dispatch(requestActions.requestEnd());
