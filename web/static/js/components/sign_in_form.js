@@ -15,7 +15,7 @@ export default class SignInForm extends React.Component {
           <input name="email" id="email" type="email" />
           <label htmlFor="password">Password</label>
           <input name="password" id="password" type="password" />
-          <input name="submit" id="submit" type="submit" value="Login"/>
+          <input className="button" name="submit" id="submit" type="submit" value="Login"/>
         </form>
       </div>
     );
