@@ -5,11 +5,11 @@
     "test": "mocha -r mock-local-storage --compilers js:babel-core/register --recursive test/js"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "dependencies": {
-    "bourbon": "^4.3.1",
-    "bourbon-neat": "^1.8.0",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.4.2",
