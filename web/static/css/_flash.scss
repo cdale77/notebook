@@ -1,0 +1,10 @@
+#flash {
+  padding: .25% .5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flash-success { background-color: $success-color; }
+.flash-alert { background-color: $alert-color; }
+.flash-error { background-color: $error-color; }
+.flash-notice { background-color: $notice-color; }
