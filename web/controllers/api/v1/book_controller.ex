@@ -7,13 +7,6 @@ defmodule Notebook.Api.V1.BookController do
 
   plug :scrub_params, "book" when action in [:create, :update]
 
-  def show(conn, %{"id" => id}) do
-    book = Repo.get(Book, id)
-    conn
-    |> put_status(:ok)
-    |> render("show.json", book: book)
-  end
-
   def index(conn, %{}) do
     books = Repo.all(Book)
     conn

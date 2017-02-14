@@ -8,7 +8,10 @@ const Constants = {
       signedIn: false,
       user: {}
     },
-    routing: {}
+    routing: {},
+    books: {
+      bookList: []
+    }
   },
   ACTIONS: {
     REQUEST_START:                "REQUEST_START",
@@ -20,6 +23,11 @@ const Constants = {
     NEW_SESSION_FAILURE:          "NEW_SESSION_FAILURE",
     DESTROY_SESSION_SUCCESS:      "DESTROY_SESSION_SUCCESS",
     DESTROY_SESSION_FAILURE:      "DESTROY_SESSION_FAILURE",
+    NEW_BOOK_SUCCESS:             "NEW_BOOK_SUCCESS",
+    NEW_BOOK_FAILURE:             "NEW_BOOK_FAILURE",
+    GET_BOOKS_SUCCESS:            "GET_BOOKS_SUCCESS",
+    GET_BOOKS_FAILURE:            "GET_BOOKS_FAILURE",
+    SET_CURRENT_BOOK:             "SET_CURRENT_BOOK",
   }
 }
 

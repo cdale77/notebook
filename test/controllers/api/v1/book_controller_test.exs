@@ -2,7 +2,7 @@ defmodule Notebook.Api.V1.BookControllerTest do
   use Notebook.ConnCase
   import Notebook.Factory
   alias Notebook.Endpoint
-
+  require IEx
   setup %{conn: conn} do
     user = build(:user) |> set_password("password1234") |> insert()
     {:ok, jwt, _full_claims} = Guardian.encode_and_sign(user)
@@ -49,6 +49,28 @@ defmodule Notebook.Api.V1.BookControllerTest do
       |> json_response(:ok)
 
       assert resp["data"]["book"]["name"] == "New Book"
+    end
+  end
+
+  describe "index" do
+    test "with an invalid jwt", %{conn: conn} do
+      resp = conn
+      |> put_req_header("authorization", "Bearer: 12121212")
+      |> get(book_path(Endpoint, :index))
+      |> json_response(:unauthorized)
+
+      assert resp["message"] == "Authentication required"
+    end
+
+    test "with a valid jwt", %{conn: conn, jwt: jwt} do
+      insert(:book)
+      insert(:book)
+      resp = conn
+      |> put_req_header("authorization", "Bearer: #{jwt}")
+      |> get(book_path(Endpoint, :index))
+      |> json_response(:ok)
+
+      assert length(resp["data"]["books"]) == 2
     end
   end
 end

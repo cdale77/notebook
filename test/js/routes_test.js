@@ -10,4 +10,8 @@ describe("Routes", () => {
   it("should return the proper currentUser route", () => {
     expect(Routes.currentUser()).toEqual("/api/v1/current_user");
   })
+
+  it("should return the proper books route", () => {
+    expect(Routes.books()).toEqual("/api/v1/books");
+  })
 })

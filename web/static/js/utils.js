@@ -4,7 +4,7 @@ const Utils = {
     const token = localStorage.getItem("phxAuthToken");
     const headers = new Headers();
     headers.append("Content-type", "application/json");
-    headers.append("Authorization", token);
+    headers.append("Authorization", "Bearer: " + token);
 
     const baseOptions = {
       method: method,

@@ -26,7 +26,7 @@ defmodule Notebook.Router do
     scope "/v1" do
       post "/sessions",   Api.V1.SessionController, :create
       delete "/sessions", Api.V1.SessionController, :delete
-      resources "/books", Api.V1.BookController do
+      resources "/books", Api.V1.BookController, except: [:show] do
         resources "/notes", Api.V1.NoteController
       end
     end

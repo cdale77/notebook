@@ -12,8 +12,10 @@ import Utils                            from "./utils";
 import requestReducer                   from "./reducers/request_reducer";
 import flashReducer                     from "./reducers/flash_reducer";
 import sessionReducer                   from "./reducers/session_reducer";
+import bookReducer                      from "./reducers/book_reducer";
 import AppContainer                     from "./containers/app_container";
 import SignInContainer                  from "./containers/sign_in_container";
+import BooksContainer                   from "./containers/books_container";
 
 function persistStore() {
   const stringifiedState = JSON.stringify(store.getState());
@@ -29,7 +31,8 @@ const appReducer = combineReducers(
     flash: flashReducer,
     request: requestReducer,
     session: sessionReducer,
-    routing: routerReducer
+    routing: routerReducer,
+    books: bookReducer
   }
 );
 
@@ -44,6 +47,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={AppContainer}>
         <Route path="/sign_in" component={SignInContainer} />
+        <Route path="/books" component={BooksContainer} />
       </Route>
     </Router>
   </Provider>,

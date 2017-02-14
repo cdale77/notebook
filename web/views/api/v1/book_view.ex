@@ -6,7 +6,7 @@ defmodule Notebook.Api.V1.BookView do
   end
 
   def render("index.json", %{books: books}) do
-    %{data: %{notes: render_many(books, Nobebook.Api.V1.BookView, "one.json")}}
+    %{data: %{books: render_many(books, Notebook.Api.V1.BookView, "one.json")}}
   end
 
   def render("delete.json", %{message: message}) do

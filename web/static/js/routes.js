@@ -4,6 +4,8 @@ const Routes = {
 
   currentUser: () => { return("/api/v1/current_user"); },
 
+  books: () => { return("/api/v1/books"); }
+
 };
 
 export default Routes;
