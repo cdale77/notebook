@@ -1,0 +1,32 @@
+.new-book-expander {
+  float: right;
+  margin-top: -3%;
+}
+
+.book-list a { color: $base-font-color; }
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-listing {
+  padding: 3% 5%;
+  border: $base-border;
+  margin: 2%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.book-name {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.book-notes {
+  text-align: center;
+  font-size: .9em;
+  color: $medium-gray;
+}

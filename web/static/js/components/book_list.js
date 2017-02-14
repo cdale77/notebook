@@ -22,15 +22,7 @@ export default class BookList extends React.Component {
       <div>
         <h1>Books</h1>
         <NewBookForm onSubmit={this.props.addNewBook} />
-        <table className="site-list table-minimal">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th></th>
-            </tr>
-            {this.buildBookList()}
-          </tbody>
-        </table>
+        <div className="book-list">{this.buildBookList()}</div>
       </div>
     )
   }

@@ -30,7 +30,7 @@ export default class NewBookForm extends React.Component {
       <div className="expander">
         <button
           onClick={this.toggleExpander.bind(this)}
-          className={this.expanderClassName()}>
+          className={"new-book-expander " + this.expanderClassName()}>
           + Add Book
         </button>
         <div className="form fieldset new-book-form expander-content">
