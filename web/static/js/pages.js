@@ -4,7 +4,11 @@ const Pages = {
 
   books: () => { return("/books") },
 
-  book: (bookId) => { return("/books/" + bookId) }
+  book: (bookId) => { return("/books/" + bookId) },
+
+  notes: (bookId) => { return("/books/" + bookId + "/notes") },
+
+  note: (bookId, noteId) => { return("/books/" + bookId + "/notes/" + noteId)}
 
 }
 

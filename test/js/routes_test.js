@@ -14,4 +14,9 @@ describe("Routes", () => {
   it("should return the proper books route", () => {
     expect(Routes.books()).toEqual("/api/v1/books");
   })
+
+  it("should return the proper notes route", () => {
+    const bookId = 2;
+    expect(Routes.notes(bookId)).toEqual("/api/v1/books/2/notes");
+  })
 })

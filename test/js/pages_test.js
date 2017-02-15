@@ -15,4 +15,15 @@ describe("Pages", () => {
     const bookId = 4;
     expect("/books/4").toEqual(Pages.book(bookId));
   })
+
+  it("should return the proper notes page", () => {
+    const bookId = 3;
+    expect("/books/3/notes").toEqual(Pages.notes(bookId));
+  })
+
+  it("should return the proper note page", () => {
+    const bookId = 4;
+    const noteId = 12;
+    expect("/books/4/notes/12").toEqual(Pages.note(bookId, noteId));
+  })
 })

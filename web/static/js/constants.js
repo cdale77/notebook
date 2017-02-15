@@ -10,7 +10,12 @@ const Constants = {
     },
     routing: {},
     books: {
+      currentBook: {},
       bookList: []
+    },
+    notes: {
+      currentNote: {},
+      noteList: []
     }
   },
   ACTIONS: {
@@ -28,6 +33,11 @@ const Constants = {
     GET_BOOKS_SUCCESS:            "GET_BOOKS_SUCCESS",
     GET_BOOKS_FAILURE:            "GET_BOOKS_FAILURE",
     SET_CURRENT_BOOK:             "SET_CURRENT_BOOK",
+    NEW_NOTE_SUCCESS:             "NEW_NOTE_SUCCESS",
+    NEW_NOTE_FAILURE:             "NEW_NOTE_FAILURE",
+    GET_NOTES_SUCCESS:            "GET_NOTES_SUCCESS",
+    GET_NOTES_FAILURE:            "GET_NOTES_FAILURE",
+    SET_CURRENT_NOTE:             "SET_CURRENT_NOTE",
   }
 }
 
