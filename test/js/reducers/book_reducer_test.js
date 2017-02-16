@@ -1,7 +1,7 @@
 import expect               from "expect";
 import Constants            from "../../../web/static/js/constants";
-import bookReducer              from "../../../web/static/js/reducers/book_reducer";
-import * as bookActions         from "../../../web/static/js/actions/books";
+import bookReducer          from "../../../web/static/js/reducers/book_reducer";
+import * as bookActions     from "../../../web/static/js/actions/books";
 
 describe("bookReducer", () => {
 
