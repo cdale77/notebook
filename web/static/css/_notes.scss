@@ -1,0 +1,12 @@
+.notes-container {
+  display: flex;
+}
+
+.note-list {
+  flex-grow: 1;
+  border-right: $base-border;
+}
+
+.note-view {
+  flex-grow: 5;
+}

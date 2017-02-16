@@ -12,8 +12,10 @@ export default class BookList extends React.Component {
   buildBookList() {
     return(
       this.props.books.bookList.map(function(book) {
-        return(<BookListing key={book.id} book={book} />)
-      })
+        return(<BookListing key={book.id}
+                            book={book}
+                            setCurrentBook={this.props.setCurrentBook} />)
+      }.bind(this))
     )
   }
 
@@ -29,5 +31,6 @@ export default class BookList extends React.Component {
 }
 
 BookList.propTypes = {
-  books: React.PropTypes.object.isRequired
+  books: React.PropTypes.object.isRequired,
+  addNewBook: React.PropTypes.func.isRequired
 }

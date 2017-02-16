@@ -45,12 +45,12 @@ export function setCurrentNote(noteId) {
 /* Thunks */
 const NoteActions = {
 
-  getNotes: function() {
+  getNotes: function(bookId) {
     return function(dispatch) {
       dispatch(requestActions.requestStart("GET_NOTES"));
 
       const requestOpts = Utils.makeRequestOptions("GET");
-      const url = Routes.notes();
+      const url = Routes.notes(bookId);
 
       fetch(url, requestOpts)
       .then((response) => {
@@ -71,13 +71,13 @@ const NoteActions = {
     };
   },
 
-  addNote: function(name, note_html) {
+  addNote: function(bookId, name) {
     return function(dispatch) {
       dispatch(requestActions.requestStart("NEW_NOTE"));
 
-      const newNoteData = {note: {name: name, note_html}};
+      const newNoteData = {note: {name: name}};
       const requestOpts = Utils.makeRequestOptions("POST", newNoteData);
-      const url = Routes.notes();
+      const url = Routes.notes(bookId);
 
       fetch(url, requestOpts)
       .then((response) => {
