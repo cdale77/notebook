@@ -1,10 +1,21 @@
 .notes-container {
   display: flex;
+  height: 100vh;
 }
 
 .note-list {
+  padding-top: 1%;
   flex-grow: 1;
   border-right: $base-border;
+}
+
+.note-list .expander {
+  padding: 5%;
+}
+
+.note-tiles {
+  padding: 5%;
+  border-top: $base-border;
 }
 
 .note-view {
