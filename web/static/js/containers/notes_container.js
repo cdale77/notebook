@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(noteThunks.addNote(bookId, name));
     },
     setCurrentNote: (noteId) => {
-      console.log("setCurrentNote ", noteId);
+      dispatch(noteActions.setCurrentNote(noteId));
     }
   }
 }
@@ -41,7 +41,8 @@ class NotesContainer extends React.Component {
           <div className="notes-container">
             <NoteList book={this.props.books.currentBook}
                       notes={this.props.notes.noteList}
-                      addNewNote={this.props.addNewNote} />
+                      addNewNote={this.props.addNewNote}
+                      setCurrentNote={this.props.setCurrentNote} />
             <NoteView note={this.props.notes.currentNote} />
           </div>
         </div>

@@ -4,11 +4,6 @@ import NewNoteForm            from "./new_note_form";
 
 export default class NoteList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    //    this.state = {displayNewNoteForm: false};
-  }
-
   buildNoteList() {
     return(
       this.props.notes.map(function(note) {

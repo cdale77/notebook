@@ -14,10 +14,15 @@
 }
 
 .note-tiles {
-  padding: 5%;
   border-top: $base-border;
 }
 
 .note-view {
   flex-grow: 5;
+}
+
+.note-listing {
+  border-bottom: $base-border;
+  padding: 8%;
+  cursor: pointer;
 }
