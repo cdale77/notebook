@@ -23,11 +23,10 @@ export default class NoteEditor extends React.Component {
     return(
       <div className="edit-note-form">
         <button
-          onClick={this.toggleExpander.bind(this)}
-          className={this.expanderClassName()} >
+          onClick={this.toggleExpander.bind(this)} >
           Edit
         </button>
-        <div className="edit-note-form">
+        <div className={this.expanderClassName()} >
           Edit the note
         </div>
       </div>
