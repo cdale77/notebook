@@ -26,3 +26,17 @@
   padding: 8%;
   cursor: pointer;
 }
+
+.note-pane {
+  display: flex;
+  height: 100vh;
+}
+
+.note-content {
+  border-left: $base-border;
+  flex-grow: 1;
+}
+
+.edit-note-form.expanded {
+  flex-grow: 1;
+}
