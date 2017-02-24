@@ -40,3 +40,13 @@
 .edit-note-form.expanded {
   flex-grow: 1;
 }
+
+.edit-note-form textarea {
+  width: 99%;
+  height: 100vh;
+}
+
+.note-tools {
+  padding: 1%;
+  border-bottom: $base-border;
+}
