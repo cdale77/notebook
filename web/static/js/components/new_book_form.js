@@ -4,7 +4,10 @@ export default class NewBookForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {expanded: false};
+    this.state = {
+      expanded: false,
+      newBookName: "",
+    };
   }
 
   toggleExpander() {
@@ -19,9 +22,13 @@ export default class NewBookForm extends React.Component {
       return(base + " expander-hidden");
   }
 
+  handleChange(e) {
+    this.setState({newBookName: e.target.value});
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(e.target.name.value);
+    this.props.onSubmit(this.state.newBookName);
     this.setState({expanded: false})
   }
 
@@ -36,8 +43,16 @@ export default class NewBookForm extends React.Component {
         <div className="form fieldset new-book-form expander-content">
           <form onSubmit={this.onSubmit.bind(this) }>
             <label htmlFor="name">Name</label>
-            <input name="name" id="name" type="text" />
-            <input className="button" name="submit" id="submit" type="submit" value="Add" />
+            <input name="name"
+                   id="name"
+                   type="text"
+                   value={this.state.value}
+                   onChange={this.handleChange.bind(this)} />
+            <input className="button"
+                   name="submit"
+                   id="submit"
+                   type="submit"
+                   value="Add" />
           </form>
         </div>
       </div>

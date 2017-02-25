@@ -41,8 +41,8 @@ export default class NoteEditor extends React.Component {
   saveNote() {
     const diff = this.state.lastKeystroke - this.state.lastSaved;
     if (diff > 0) {
-      // grab content from text area
-      // fire an action to update the store
+      // fire an action to save the note to the server, which will update the
+      // global state
       this.setState({lastSaved: new Date().getTime()});
       this.showSaveIcon();
     }
