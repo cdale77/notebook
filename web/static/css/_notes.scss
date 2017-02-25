@@ -49,4 +49,13 @@
 .note-tools {
   padding: 1%;
   border-bottom: $base-border;
+  display: flex;
+}
+
+.note-buttons {
+  padding-right: 2%;
+}
+
+.editor-top {
+  min-height: 1.5em;
 }

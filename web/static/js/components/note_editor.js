@@ -5,7 +5,29 @@ export default class NoteEditor extends React.Component {
   constructor(props) {
     super(props);
     const timestamp = new Date().getTime();
-    this.state = {lastSaved: timestamp, lastKeystroke: timestamp};
+    this.state = {
+      lastSaved: timestamp,
+      lastKeystroke: timestamp,
+      displaySaveIcon: false
+    };
+  }
+
+  componentWillUnmount() {
+    this.clearTimers();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.display == true) {
+      const saveTimer = window.setInterval(() => { this.saveNote() }, 3000);
+      this.setState({saveTimer: saveTimer});
+    } else if (nextProps.display == false) {
+      this.clearTimers();
+    }
+  }
+
+  clearTimers() {
+    window.clearTimeout(this.state.saveTimer);
+    window.clearTimeout(this.state.iconTimer);
   }
 
   expanderClassName() {
@@ -16,29 +38,45 @@ export default class NoteEditor extends React.Component {
       return(base + " hidden");
   }
 
-  saveNote(e) {
-    const timestamp = new Date().getTime();
-    const diff = timestamp - this.state.lastSaved;
-    console.log(diff);
-    if (diff > 3000) {
-      console.log("save");
+  saveNote() {
+    const diff = this.state.lastKeystroke - this.state.lastSaved;
+    if (diff > 0) {
+      // grab content from text area
+      // fire an action to update the store
+      this.setState({lastSaved: new Date().getTime()});
+      this.showSaveIcon();
     }
-    this.setState({lastSaved: timestamp});
   }
 
-  processKeystroke(e) {
+  processKeystroke() {
     this.setState({lastKeystroke: new Date().getTime()});
-    this.saveNote(e);
+  }
+
+  showSaveIcon() {
+    const iconTimer = window.setTimeout(() => {
+      this.setState({displaySaveIcon: false});
+    }, 2000)
+    this.setState({displaySaveIcon: true, iconTimer: iconTimer});
+  }
+
+  saveIconClass() {
+    if (this.state.displaySaveIcon == false)
+      return("hidden")
   }
 
   render() {
     return(
       <div className={this.expanderClassName()} >
+        <div className="editor-top">
+          <div className={"save-icon " + this.saveIconClass()}>
+            Saved
+          </div>
+        </div>
         <form onKeyUp={this.processKeystroke.bind(this)} >
           <textarea name="note_html" id="note_html"></textarea>
         </form>
       </div>
-    )
+    );
   }
 }
 

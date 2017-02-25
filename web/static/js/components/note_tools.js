@@ -5,9 +5,11 @@ export default class NoteTools extends React.Component {
   render() {
     return(
       <div className="note-tools">
-        <button onClick={this.props.toggleEditor}>
-          Edit
-        </button>
+        <div className="note-buttons">
+          <button onClick={this.props.toggleEditor}>
+            Edit
+          </button>
+        </div>
       </div>
     )
   }
