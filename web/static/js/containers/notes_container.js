@@ -24,6 +24,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     setCurrentNote: (noteId) => {
       dispatch(noteActions.setCurrentNote(noteId));
+    },
+    updateCurrentNote: (noteHtml) => {
+      // fire thunk to save to the server
+      // fire action to update the state
+      console.log("**********************");
+      console.log("new note: ", noteHtml)
     }
   }
 }
@@ -43,7 +49,8 @@ class NotesContainer extends React.Component {
                       notes={this.props.notes.noteList}
                       addNewNote={this.props.addNewNote}
                       setCurrentNote={this.props.setCurrentNote} />
-            <NoteView note={this.props.notes.currentNote} />
+            <NoteView note={this.props.notes.currentNote}
+                      updateCurrentNote={this.props.updateCurrentNote} />
           </div>
         </div>
       );

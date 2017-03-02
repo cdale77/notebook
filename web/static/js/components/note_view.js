@@ -19,7 +19,9 @@ export default class NoteView extends React.Component {
       <div className="note-view">
         <NoteTools toggleEditor={this.toggleEditor.bind(this)} />
         <div className="note-pane">
-          <NoteEditor note={this.props.note} display={this.state.displayEditor}/>
+          <NoteEditor note={this.props.note}
+                      display={this.state.displayEditor}
+                      updateCurrentNote={this.props.updateCurrentNote} />
           <NoteContent note={this.props.note} />
         </div>
       </div>

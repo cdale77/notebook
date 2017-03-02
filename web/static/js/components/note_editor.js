@@ -6,6 +6,7 @@ export default class NoteEditor extends React.Component {
     super(props);
     const timestamp = new Date().getTime();
     this.state = {
+      newNoteHtml: "",
       lastSaved: timestamp,
       lastKeystroke: timestamp,
       displaySaveIcon: false
@@ -38,11 +39,14 @@ export default class NoteEditor extends React.Component {
       return(base + " hidden");
   }
 
+  handleFormChange(e) {
+    this.setState({newNoteHtml: e.target.value});
+  }
+
   saveNote() {
     const diff = this.state.lastKeystroke - this.state.lastSaved;
     if (diff > 0) {
-      // fire an action to save the note to the server, which will update the
-      // global state
+      this.props.updateCurrentNote(this.state.newNoteHtml);
       this.setState({lastSaved: new Date().getTime()});
       this.showSaveIcon();
     }
@@ -73,7 +77,10 @@ export default class NoteEditor extends React.Component {
           </div>
         </div>
         <form onKeyUp={this.processKeystroke.bind(this)} >
-          <textarea name="note_html" id="note_html"></textarea>
+          <textarea name="note_html"
+                    id="note_html"
+                    value={this.state.newNoteHtml}
+                    onChange={this.handleFormChange.bind(this)} />
         </form>
       </div>
     );

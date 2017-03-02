@@ -45,4 +45,6 @@ describe("noteReducer", () => {
     const returnedState = noteReducer({noteList: notes}, noteActions.setCurrentNote(note.id));
     expect(returnedState).toEqual({noteList: notes, currentNote: note })
   })
+
+  it("should handle ")
 })
