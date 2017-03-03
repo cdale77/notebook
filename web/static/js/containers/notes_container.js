@@ -27,9 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateCurrentNote: (noteHtml) => {
       // fire thunk to save to the server
-      // fire action to update the state
-      console.log("**********************");
-      console.log("new note: ", noteHtml)
+      dispatch(noteActions.updateCurrentNote(noteHtml));
     }
   }
 }

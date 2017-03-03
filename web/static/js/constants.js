@@ -38,6 +38,7 @@ const Constants = {
     GET_NOTES_SUCCESS:            "GET_NOTES_SUCCESS",
     GET_NOTES_FAILURE:            "GET_NOTES_FAILURE",
     SET_CURRENT_NOTE:             "SET_CURRENT_NOTE",
+    UPDATE_CURRENT_NOTE:          "UPDATE_CURRENT_NOTE"
   }
 }
 

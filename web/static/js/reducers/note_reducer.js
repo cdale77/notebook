@@ -29,6 +29,14 @@ function noteReducer(state = {}, action) {
         currentNote: currentNote
       })
 
+    case Constants.ACTIONS.UPDATE_CURRENT_NOTE:
+      const newNote = state.currentNote;
+      newNote.note_html = action.noteHtml;
+
+      return Object.assign({}, state, {
+        currentNote: newNote
+      })
+
     default:
       return state
   }

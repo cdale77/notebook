@@ -42,6 +42,14 @@ export function setCurrentNote(noteId) {
   });
 }
 
+export function updateCurrentNote(noteHtml) {
+  return({
+    type: Constants.ACTIONS.UPDATE_CURRENT_NOTE,
+    noteHtml: noteHtml,
+    sentAt: Date.now()
+  })
+}
+
 /* Thunks */
 const NoteActions = {
 
