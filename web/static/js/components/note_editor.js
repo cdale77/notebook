@@ -18,6 +18,9 @@ export default class NoteEditor extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setState({newNoteHtml: nextProps.note.note_html});
+
+    // set the save timer if the edit window is open
     if (nextProps.display == true) {
       const saveTimer = window.setInterval(() => { this.saveNote() }, 3000);
       this.setState({saveTimer: saveTimer});
