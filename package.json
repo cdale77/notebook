@@ -10,6 +10,7 @@
     ]
   },
   "dependencies": {
+    "marked": "^0.3.6",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.4.2",

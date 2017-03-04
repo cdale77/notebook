@@ -6,7 +6,7 @@ export default class NoteEditor extends React.Component {
     super(props);
     const timestamp = new Date().getTime();
     this.state = {
-      newNoteHtml: "",
+      newNoteHtml: props.note.note_html,
       lastSaved: timestamp,
       lastKeystroke: timestamp,
       displaySaveIcon: false
