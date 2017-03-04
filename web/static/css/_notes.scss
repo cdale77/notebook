@@ -35,6 +35,7 @@
 .note-content {
   border-left: $base-border;
   flex-grow: 1;
+  padding: 1%;
 }
 
 .edit-note-form.expanded {
@@ -50,6 +51,7 @@
   padding: 1%;
   border-bottom: $base-border;
   display: flex;
+  align-items: baseline;
 }
 
 .note-buttons {
@@ -59,3 +61,5 @@
 .editor-top {
   min-height: 1.5em;
 }
+
+.note-name { padding-left: 3%; }

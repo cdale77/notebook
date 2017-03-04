@@ -21,7 +21,7 @@ export default class BookList extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="book-list-container">
         <h1>Books</h1>
         <NewBookForm onSubmit={this.props.addNewBook} />
         <div className="book-list">{this.buildBookList()}</div>
