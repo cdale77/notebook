@@ -17,7 +17,9 @@ export default class NoteView extends React.Component {
   render() {
     return(
       <div className="note-view">
-        <NoteTools toggleEditor={this.toggleEditor.bind(this)} />
+        <NoteTools
+          noteName={this.props.note.name}
+          toggleEditor={this.toggleEditor.bind(this)} />
         <div className="note-pane">
           <NoteEditor note={this.props.note}
                       display={this.state.displayEditor}

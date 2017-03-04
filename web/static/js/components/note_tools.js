@@ -10,6 +10,7 @@ export default class NoteTools extends React.Component {
             Edit
           </button>
         </div>
+        <div className="note-name">{this.props.noteName}</div>
       </div>
     )
   }

@@ -5,7 +5,6 @@ export default class NoteContent extends React.Component {
   render() {
     return (
       <div className="note-content">
-        Note content
         {this.props.note.note_html}
       </div>
     )
