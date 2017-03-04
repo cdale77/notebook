@@ -25,9 +25,9 @@ const mapDispatchToProps = (dispatch) => {
     setCurrentNote: (noteId) => {
       dispatch(noteActions.setCurrentNote(noteId));
     },
-    updateCurrentNote: (noteHtml) => {
-      // fire thunk to save to the server
+    updateCurrentNote: (bookId, noteId, noteHtml) => {
       dispatch(noteActions.updateCurrentNote(noteHtml));
+      dispatch(noteThunks.updateNote(bookId, noteId, noteHtml));
     }
   }
 }
@@ -39,6 +39,7 @@ class NotesContainer extends React.Component {
   }
 
   render() {
+    const bookId = this.props.notes.currentNote.book_id;
     if (this.props.session.signedIn == true)
       return (
         <div className="authenticated-container">
@@ -48,7 +49,7 @@ class NotesContainer extends React.Component {
                       addNewNote={this.props.addNewNote}
                       setCurrentNote={this.props.setCurrentNote} />
             <NoteView note={this.props.notes.currentNote}
-                      updateCurrentNote={this.props.updateCurrentNote} />
+                      updateCurrentNote={this.props.updateCurrentNote.bind(this, bookId)} />
           </div>
         </div>
       );

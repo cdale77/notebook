@@ -6,7 +6,9 @@ const Routes = {
 
   books: () => { return("/api/v1/books"); },
 
-  notes: (bookId) => { return("/api/v1/books/" + bookId + "/notes") }
+  notes: (bookId) => { return("/api/v1/books/" + bookId + "/notes") },
+
+  note: (bookId, noteId) => { return("/api/v1/books/" + bookId + "/notes/" + noteId) }
 
 };
 

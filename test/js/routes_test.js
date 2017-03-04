@@ -19,4 +19,10 @@ describe("Routes", () => {
     const bookId = 2;
     expect(Routes.notes(bookId)).toEqual("/api/v1/books/2/notes");
   })
+
+  it("should return the proper note route", () => {
+    const bookId = 2;
+    const noteId = 5;
+    expect(Routes.note(bookId, noteId)).toEqual("/api/v1/books/2/notes/5");
+  })
 })

@@ -104,6 +104,31 @@ const NoteActions = {
         dispatch(newNoteFailure());
       })
     }
+  },
+
+  updateNote: function(bookId, noteId, noteHtml) {
+    return function(dispatch) {
+      dispatch(requestActions.requestStart("NEW_NOTE"));
+      const noteData = {note: {note_html: noteHtml}};
+      const requestOpts = Utils.makeRequestOptions("PATCH", noteData);
+      const url = Routes.note(bookId, noteId);
+
+      fetch(url, requestOpts)
+      .then((response) => {
+        if(response.status == 200)
+          return response.json()
+        else
+          throw "Something went wrong";
+      })
+      .then((json) => {
+        dispatch(requestActions.requestEnd());
+        // updating the state is done optimistically
+      })
+      .catch((message) => {
+        dispatch(requestActions.requestEnd());
+        dispatch(flashActions.flashError("Problem updating note: " + message));
+      })
+    }
   }
 }
 
