@@ -45,7 +45,8 @@ class NotesContainer extends React.Component {
         <div className="authenticated-container">
           <div className="notes-container">
             <NoteList book={this.props.books.currentBook}
-                      notes={this.props.notes.noteList}
+              notes={this.props.notes.noteList}
+              currentNote={this.props.notes.currentNote}
                       addNewNote={this.props.addNewNote}
                       setCurrentNote={this.props.setCurrentNote} />
             <NoteView note={this.props.notes.currentNote}

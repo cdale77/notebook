@@ -9,6 +9,7 @@ export default class NoteList extends React.Component {
       this.props.notes.map(function(note) {
         return(<NoteListing key={note.id}
                             note={note}
+                            currentNote={this.props.currentNote}
                             setCurrentNote={this.props.setCurrentNote} />)
       }.bind(this))
     )

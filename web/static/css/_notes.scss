@@ -27,6 +27,10 @@
   cursor: pointer;
 }
 
+.note-listing.selected {
+  background-color: gray;
+}
+
 .note-pane {
   display: flex;
   height: 100vh;
