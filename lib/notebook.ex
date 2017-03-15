@@ -19,7 +19,11 @@ defmodule Notebook do
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Notebook.Supervisor]
-    Supervisor.start_link(children, opts)
+    sup_ret = Supervisor.start_link(children, opts)
+
+    run_migrations()
+
+    sup_ret
   end
 
   # Tell Phoenix to update the endpoint configuration
@@ -27,5 +31,9 @@ defmodule Notebook do
   def config_change(changed, _new, removed) do
     Notebook.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  def run_migrations do
+    Ecto.Migrator.run(Notebook.Repo, "priv/repo/migrations", :up, all: true)
   end
 end

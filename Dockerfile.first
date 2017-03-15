@@ -1,0 +1,24 @@
+FROM cdale77/docker-elixir-base
+
+# App-specific dependencies.
+RUN apt-get install -y postgresql-client
+
+# Set up Phoenix
+RUN MIX_ENV=prod mix local.hex --force && \
+    MIX_ENV=prod mix local.rebar && \
+    MIX_ENV=prod mix archive.install --force \
+    https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+
+# Set up app directory
+RUN mkdir /var/app
+WORKDIR /var/app
+
+# Copy the source dir
+COPY . /var/app
+
+ENV MIX_ENV=prod
+
+# Run the server
+CMD ./wait-for-it.sh db:5432 && \
+    MIX_ENV=prod mix ecto.create && MIX_ENV=prod mix ecto.migrate
+

@@ -1,0 +1,16 @@
+version: "2"
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432
+    volumes: 
+      - /var/lib/docker-data:/var/lib
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.first
+    env_file:
+      - web-variables.env
+    depends_on:
+      - db
