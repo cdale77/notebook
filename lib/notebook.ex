@@ -21,7 +21,7 @@ defmodule Notebook do
     opts = [strategy: :one_for_one, name: Notebook.Supervisor]
     sup_ret = Supervisor.start_link(children, opts)
 
-    run_migrations()
+    #run_migrations()
 
     sup_ret
   end

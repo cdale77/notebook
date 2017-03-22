@@ -16,9 +16,11 @@ COPY wait-for-it.sh /var/app/wait-for-it.sh
 RUN tar -xvzf /var/app/notebook.tar.gz
 
 # Set the production port and env
-ENV PORT=8888
+ENV PORT=4001
 ENV MIX_ENV=prod
 
 # Run the server
-CMD ./wait-for-it.sh db:5432 && bin/notebook foreground
+#CMD ./wait-for-it.sh db:5432 && bin/notebook foreground
+CMD ["bin/notebook", "foreground"]
 
+EXPOSE 4001

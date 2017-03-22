@@ -4,7 +4,7 @@ services:
     image: postgres
     ports:
       - 5432
-    volumes: 
+    volumes:
       - /var/lib/docker-data:/var/lib
   web:
     build:
