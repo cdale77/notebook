@@ -1,10 +1,14 @@
-import React   from "react";
-import Marked  from "marked";
+import React     from "react";
+import Showdown  from "showdown";
 
 export default class NoteContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {converter: new Showdown.Converter()}
+  }
 
   createMarkup() {
-    return {__html: Marked(this.props.note.note_html)}
+    return {__html: this.state.converter.makeHtml(this.props.note.note_html)}
   }
 
   render() {
