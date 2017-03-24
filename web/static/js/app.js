@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider }                     from "react-redux";
 import thunk                            from "redux-thunk";
 import createLogger                     from "redux-logger";
-import { Router, Route, hashHistory }   from "react-router";
+import { Router, Route, IndexRedirect, hashHistory }   from "react-router";
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import Constants                        from "./constants";
 import Utils                            from "./utils";
@@ -49,6 +49,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={AppContainer}>
+        <IndexRedirect to="/books" />
         <Route path="/sign_in" component={SignInContainer} />
         <Route path="/books" component={BooksContainer} />
         <Route path="/books/:bookId/notes" component={NotesContainer} />
