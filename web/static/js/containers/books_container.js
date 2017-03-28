@@ -27,8 +27,9 @@ const mapDispatchToProps = (dispatch) => {
 
 class BooksContainer extends React.Component {
 
-  componentWillMount() {
-    this.props.getBooks();
+  constructor(props) {
+    super(props);
+    props.getBooks();
   }
 
   render() {

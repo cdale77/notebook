@@ -37,6 +37,12 @@ function noteReducer(state = {}, action) {
         currentNote: newNote
       })
 
+    case Constants.ACTIONS.CLEAR_NOTES:
+      return Object.assign({}, state, {
+        noteList: [],
+        currentNote: {}
+      })
+
     default:
       return state
   }

@@ -28,13 +28,28 @@ const mapDispatchToProps = (dispatch) => {
     updateCurrentNote: (bookId, noteId, noteHtml) => {
       dispatch(noteActions.updateCurrentNote(noteHtml));
       dispatch(noteThunks.updateNote(bookId, noteId, noteHtml));
+    },
+    clearNotes: () => {
+      dispatch(noteActions.clearNotes());
     }
   }
 }
 
 class NotesContainer extends React.Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.resetNoteData();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.books.currentBook.id != nextProps.books.currentBook.id) {
+      this.resetNoteData();
+    }
+  }
+
+  resetNoteData() {
+    this.props.clearNotes();
     this.props.getNotes(this.props.books.currentBook.id);
   }
 

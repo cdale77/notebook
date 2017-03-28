@@ -47,8 +47,16 @@ export function updateCurrentNote(noteHtml) {
     type: Constants.ACTIONS.UPDATE_CURRENT_NOTE,
     noteHtml: noteHtml,
     sentAt: Date.now()
-  })
+  });
 }
+
+export function clearNotes() {
+  return({
+    type: Constants.ACTIONS.CLEAR_NOTES,
+    sentAt: Date.now()
+  });
+}
+
 
 /* Thunks */
 const NoteActions = {

@@ -43,7 +43,7 @@ describe("noteReducer", () => {
     const note2 = {id: 3, name: "bar", note_html: "<h1>bar</h1>"}
     const notes = [note, note2];
     const returnedState = noteReducer({noteList: notes}, noteActions.setCurrentNote(note.id));
-    expect(returnedState).toEqual({noteList: notes, currentNote: note })
+    expect(returnedState).toEqual({noteList: notes, currentNote: note });
   })
 
   it("should handle UPDATE_CURRENT_NOTE", () => {
@@ -54,7 +54,20 @@ describe("noteReducer", () => {
     const newHtml = "<h1>baz</h1>";
     const returnedState = noteReducer(initialState, noteActions.updateCurrentNote(newHtml));
 
-    const newValue = returnedState.currentNote.note_html
-    expect(newValue).toEqual(newHtml)
+    const newValue = returnedState.currentNote.note_html;
+    expect(newValue).toEqual(newHtml);
   })
+
+  it("should handle CLEAR_NOTES", () => {
+    const note = {id: 2, name: "foo", note_html: "<h1>foo</h1>"}
+    const note2 = {id: 3, name: "bar", note_html: "<h1>bar</h1>"}
+    const notes = [note, note2];
+    const initialState = {noteList: notes, currentNote: note};
+    const returnedState = noteReducer(initialState, noteActions.clearNotes());
+
+    const noteList = returnedState.noteList;
+    const currentNote = returnedState.currentNote;
+    expect(noteList).toEqual([]);
+    expect(currentNote).toEqual({});
+  });
 })
