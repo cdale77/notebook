@@ -6,16 +6,6 @@ defmodule Notebook.BookTest do
   @valid_attrs %{name: "test"}
 
   describe "relationships" do
-    test "user relationship" do
-      user = build(:user) |> set_password("password1234") |> insert()
-      book = insert(:book, user: user)
-      book = Book
-      |> Repo.get(book.id)
-      |> Repo.preload(:user)
-
-      assert book.user_id == user.id
-    end
-
     test "notes relationship" do
       book = insert(:book)
       insert(:note, book: book)
