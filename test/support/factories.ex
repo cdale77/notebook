@@ -11,8 +11,7 @@ defmodule Notebook.Factory do
 
   def book_factory do
     %Notebook.Book{
-      name: "Test Book",
-      user: build(:user) |> set_password("password1234")
+      name: "Test Book"
     }
   end
 

@@ -12,20 +12,6 @@ defmodule Notebook.UserTest do
     {:ok, %{user: Repo.get(User, user.id)}}
   end
 
-  describe "relationships" do
-    test "books relationship", %{user: user} do
-      insert(:book, user: user)
-      insert(:book, user: user)
-      insert(:book)
-
-      user = User
-      |> Repo.get(user.id)
-      |> Repo.preload(:books)
-
-      assert Enum.count(user.books) == 2
-    end
-  end
-
   describe "emails" do
     test "unique emails", %{user: user} do
       user_attrs = %{email: user.email,
