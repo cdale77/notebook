@@ -5,7 +5,7 @@
 
 .note-list {
   padding-top: 1%;
-  flex-grow: 1;
+  width: 20%;
   border-right: $base-border;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .note-view {
-  flex-grow: 5;
+  width: 80%;
 }
 
 .note-listing {
