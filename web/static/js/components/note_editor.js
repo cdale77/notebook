@@ -76,7 +76,7 @@ export default class NoteEditor extends React.Component {
       <div className={this.expanderClassName()} >
         <div className="editor-top">
           <div className={"save-icon " + this.saveIconClass()}>
-            Saved
+            &#128190;
           </div>
         </div>
         <form onKeyUp={this.processKeystroke.bind(this)} >

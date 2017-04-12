@@ -66,4 +66,13 @@
   min-height: 1.5em;
 }
 
-.note-name { padding-left: 3%; }
+.note-name {
+  padding-left: 3%;
+  flex-grow: 2;
+}
+
+.save-icon {
+  color: $medium-gray;
+  text-align: right;
+  padding-right: 2%;
+}

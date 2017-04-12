@@ -5,8 +5,12 @@ import NewNoteForm            from "./new_note_form";
 export default class NoteList extends React.Component {
 
   buildNoteList() {
+    const sortedNotes = this.props.notes.sort((a,b) => {
+      return(a.updated_at < b.updated_at);
+    })
+
     return(
-      this.props.notes.map(function(note) {
+      sortedNotes.map(function(note) {
         return(<NoteListing key={note.id}
                             note={note}
                             currentNote={this.props.currentNote}
